@@ -25,5 +25,5 @@ urlpatterns = [
     # path('quizes/', views.QuizesList.as_view()),
     path('quizes/<int:pk>/', views.QuizesDetails.as_view()),
     # path('login',views.login),
-    path('instructor_login',views.instructor_login)
+    path('login',views.login)
 ]

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
 
-const baseUrl = 'http://127.0.0.1:8000/api';
+const baseUrl = 'https://danville.pythonanywhere.com/api';
 
 function Login() {
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ function Login() {
         formData.append('email', loginData.email);
         formData.append('password', loginData.password);
 
-        axios.post(baseUrl + '/instructor_login', formData)
+        axios.post(baseUrl + '/login/', formData)
             .then((res) => {
                 if (res.data.user_type === 'instructor') {
                     localStorage.setItem('userType', 'instructor');
