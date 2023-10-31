@@ -42,7 +42,7 @@ function Syllabus({
           Edit
         </button>
         <button className="DeleteSyllabus" onClick={handleDelete}>
-          Delete
+          Enable
         </button>
       </div>
     </div>
