@@ -86,10 +86,10 @@ export default function CourseSyllabus() {
 
   return (
     <div className="container CourseSyllabus">
-      <div className="syllabusFaq faqs text-light">
+      <div className="syllabusFaq faqs text-light btn-flex">
         SYLLABUS
         <button
-          className="btn btn-sm float-end bg-white text-dark AddContent"
+          className="bg-white text-dark AddContent"
           type="button"
         >
           <a href="/Teacher/AddTopic" className="text-decoration-none text-dark">

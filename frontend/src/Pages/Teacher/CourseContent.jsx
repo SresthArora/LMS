@@ -47,9 +47,9 @@ function CourseContent() {
   };
   return (
     <div className="card courseContent-container">
-      <div className="card-header class-header-style text-white">
+      <div className="card-header class-header-style text-white btn-flex">
         VIDEOS
-        <button className="btn btn-sm float-end bg-white text-dark">
+        <button className="bg-white text-dark">
           <a href="/Teacher/AddVideo" className="text-decoration-none text-dark">
             Add Video
           </a>
