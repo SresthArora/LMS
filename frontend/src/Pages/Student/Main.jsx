@@ -15,7 +15,8 @@ import NewCourse from "./NewCourse";
 import AllStudents from "./AllStudents";
 import ChatPage from "./ChatPage";
 import TeacherProfile from "./TeacherProfile";
-
+import CategoryCourseCard from "./CategoryCourseCard";
+import CategoryCourseDescription from "./CategoryCourseDescription";
 function Main() {
     return (
         <div className="App">
@@ -32,6 +33,8 @@ function Main() {
                 <Route path="/Profile" element={<Profile />} />
                 <Route path="/EditProfile" element={<EditProfile />} />
                 <Route path="/ChatPage" element={<ChatPage />} />
+                <Route path="/CategoryCourseCard" element={<CategoryCourseCard />} />
+                <Route path="/CategoryCourseDescription" element={<CategoryCourseDescription />} />
                 <Route path="/TeacherProfile" element={<TeacherProfile />} />
                 {/* Add other routes for students here */}
                 <Route path="*" element={<NotFound />} />

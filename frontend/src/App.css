@@ -476,3 +476,18 @@ h2 {
     margin: 70px;
     margin-bottom: 70px;
 }
+
+.category_course_dis {
+    margin-bottom: 40px;
+  }
+   
+  .CategorycourseDes-img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+   
+  .CategorycourseDes-img-container {
+    margin-top: 15px;
+    margin-left: 10px;
+  }

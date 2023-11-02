@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./Card";
+import CategoryCourseCard from "./CategoryCourseCard";
 import { Link } from "react-router-dom";
 function CoursesCategory(params) {
     const data = [
@@ -65,7 +65,7 @@ function CoursesCategory(params) {
     return (
         <div className="d-flex">
             {data.map((course) => (
-                <Card
+                <CategoryCourseCard
                     key={course.id}
                     id={course.id}
                     img={course.img}
