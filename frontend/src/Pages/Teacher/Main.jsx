@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes as Switch, Route } from "react-router-dom";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Home from "./Home";
 import Header from "./Header";
 import Profile from "./Profile";
@@ -16,8 +16,9 @@ import Quizes from "./Quizes";
 import NewQuiz from "./NewQuiz";
 import AddVideo from "./AddVideo";
 import AddTopic from "./AddTopic";
+import AddStudents from './AddStudents';
 import Footer from "./Footer";
-
+ 
 function Main() {
   return (
     <div className="App">
@@ -36,11 +37,12 @@ function Main() {
         <Route path="/Quizes" element={<Quizes />} />
         <Route path="/NewQuiz" element={<NewQuiz />} />
         <Route path="/AddVideo" element={<AddVideo />} />
+        <Route path="/AddStudents" element={<AddStudents />} />
         <Route path="/AddTopic" element={<AddTopic />} />
       </Switch>
       <Footer />
     </div>
   );
 }
-
+ 
 export default Main;

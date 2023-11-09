@@ -491,3 +491,8 @@ h2 {
     margin-top: 15px;
     margin-left: 10px;
   }
+  .fixed-size {
+    width: 160px;
+    height: 43px;
+    padding: 5px;
+  }

@@ -33,7 +33,7 @@ export default function Profile() {
               {/* <MDBBreadcrumbItem>
                 <a href='/Home'>Home</a>
               </MDBBreadcrumbItem> */}
-              <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
+              <MDBBreadcrumbItem active><a href="/Teacher/Profile">User Profile</a></MDBBreadcrumbItem>
               <MDBBreadcrumbItem>
                 <a href="/Teacher/EditProfile">Edit Profile</a>
               </MDBBreadcrumbItem>
