@@ -1,49 +1,49 @@
-import React, { useState } from "react";
+//PAGE TO LOAD THE CATEGORIES IN CARDS
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+//const baseUrl = 'https://danville.pythonanywhere.com/api';
+const baseUrl = "http://127.0.0.1:8000/api";
 
 const Categories = () => {
   const [searchTerm, setSearchTerm] = useState("");
-
   const [filteredCategories, setFilteredCategories] = useState([]);
+  const [categoryData, setcategoryData] = useState([]);
 
-  const categories = [
-    { id: 1, name: "Agile" },
+  useEffect(() => {
+    try {
+      axios.get(baseUrl + "/category/").then((res) => {
+        setcategoryData(res.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
-    { id: 2, name: "Scrum" },
-
-    { id: 3, name: "Category-3" },
-
-    { id: 4, name: "Category-4" },
-
-    { id: 5, name: "Category-5" },
-
-    // Add more categories as needed
-  ];
+  //const categories = [{ id: 1, name: "" }];
 
   const handleSearch = () => {
     if (!searchTerm.trim()) {
       // Display a pop-up message when the search term is empty or only contains whitespace
-
       alert("Item not valid");
-
       return;
     }
 
     // Check if the entered text matches any of the category names
-
     if (
-      !categories.some(
-        (category) => category.name.toLowerCase() === searchTerm.toLowerCase()
+      !categoryData.some(
+        (category) =>
+          category.categoryName.toLowerCase() === searchTerm.toLowerCase()
       )
     ) {
       // Display a pop-up message when the category is not found
-
       alert("Category is not found");
-
       return;
     }
 
-    const filtered = categories.filter((category) =>
-      category.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filtered = categoryData.filter((category) =>
+      category.categoryName.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setFilteredCategories(filtered);
@@ -75,12 +75,12 @@ const Categories = () => {
         <div className="col-md-15">
           <div className="d-flex flex-wrap">
             {filteredCategories.length === 0
-              ? categories.map((category) => (
+              ? categoryData.map((category) => (
                   <div
                     key={category.id}
                     className="card courseDashboardCard m-2"
                   >
-                    <a href="/Student/CoursesCategory">
+                    <a href={`/Student/courses/${category.id}`}>
                       <img
                         src={`https://source.unsplash.com/1800x1800/?course&${category.id}`}
                         className="card-img-top"
@@ -91,10 +91,10 @@ const Categories = () => {
                     <div className="card-body">
                       <h5 className="card-title">
                         <a
-                          href="/Student/CoursesCategory"
-                          className="btn btn-primary btn-color"
+                          href={`/Student/courses/${category.id}`}
+                          className="buttn btn-primary btn-color"
                         >
-                          {category.name}
+                          {category.categoryName}
                         </a>
                       </h5>
                     </div>
@@ -105,7 +105,7 @@ const Categories = () => {
                     key={category.id}
                     className="card courseDashboardCard m-2"
                   >
-                    <a href="/Student/CoursesCategory">
+                    <a href={`/Student/courses/${category.id}`}>
                       <img
                         src={`https://source.unsplash.com/1800x1800/?course&${category.id}`}
                         className="card-img-top"
@@ -116,10 +116,10 @@ const Categories = () => {
                     <div className="card-body">
                       <h5 className="card-title">
                         <a
-                          href="/Student/CoursesCategory"
-                          className="btn btn-primary btn-color"
+                          href={`/Student/courses/${category.id}`}
+                          className="buttn btn-primary btn-color"
                         >
-                          {category.name}
+                          {category.categoryName}
                         </a>
                       </h5>
                     </div>

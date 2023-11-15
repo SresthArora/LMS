@@ -35,12 +35,18 @@ function CourseDescription(props) {
           <p className="fw-bold">Start Date : date</p>
           <p className="fw-bold">End Date : date</p>
           <p className="fw-bold">
-            <a href="/Teacher/AllStudents" className="text-decoration-none text-dark">
+            <a
+              href="/Teacher/AllStudents"
+              className="text-decoration-none text-dark"
+            >
               Total Students : 100
             </a>
           </p>
           <p className="fw-bold">
-            <a href="/Teacher/QuizDashboard" className="text-decoration-none text-dark">
+            <a
+              href="/Teacher/QuizDashboard"
+              className="text-decoration-none text-dark"
+            >
               Quiz
             </a>
           </p>

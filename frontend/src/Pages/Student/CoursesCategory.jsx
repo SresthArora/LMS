@@ -1,80 +1,72 @@
+//PAGR TO LOAD THE COURSES IN CARDS
+
+import { useEffect, useState } from "react";
+import axios from "axios";
 import React from "react";
 import CategoryCourseCard from "./CategoryCourseCard";
-import { Link } from "react-router-dom";
-function CoursesCategory(params) {
-    const data = [
-        // Your course data here
-        {
-            id: 1,
-            img: "https://source.unsplash.com/1800x900/?course&1",
-            Title: "Course1",
-            desc: "this is course description this is course description",
-            btn: "know More &rarr;",
-        },
-        {
-            id: 2,
-            img: "https://source.unsplash.com/1800x900/?course&2",
-            Title: "Course2",
-            desc: "this is course description this is course description",
-            btn: "know More &rarr;",
-        },
-        {
-            id: 3,
-            img: "https://source.unsplash.com/1800x900/?course&3",
-            Title: "Course3",
-            desc: "this is course description this is course description",
-            btn: "know More &rarr;",
-        },
-        {
-            id: 4,
-            img: "https://source.unsplash.com/1800x900/?course&4",
-            Title: "Course4",
-            desc: "this is course description this is course description",
-            btn: "know More &rarr;",
-        },
-        {
-            id: 1,
-            img: "https://source.unsplash.com/1800x900/?course&1",
-            Title: "Course1",
-            desc: "this is course description this is course description",
-            btn: "know More &rarr;",
-        },
-        {
-            id: 2,
-            img: "https://source.unsplash.com/1800x900/?course&2",
-            Title: "Course2",
-            desc: "this is course description this is course description",
-            btn: "know More &rarr;",
-        },
-        {
-            id: 3,
-            img: "https://source.unsplash.com/1800x900/?course&3",
-            Title: "Course3",
-            desc: "this is course description this is course description",
-            btn: "know More &rarr;",
-        },
-        {
-            id: 4,
-            img: "https://source.unsplash.com/1800x900/?course&4",
-            Title: "Course4",
-            desc: "this is course description this is course description",
-            btn: "know More &rarr;",
-        },
-    ];
+import { useParams } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
-    return (
-        <div className="d-flex">
-            {data.map((course) => (
-                <CategoryCourseCard
-                    key={course.id}
-                    id={course.id}
-                    img={course.img}
-                    title={course.Title}
-                    desc={course.desc}
-                />
-            ))}
-        </div>
-    );
+const baseUrl = "http://127.0.0.1:8000/api";
+
+function CoursesCategory(params) {
+  let { categoryId } = useParams();
+
+  console.log({ categoryId });
+
+  // const [categoryData, setcategoryData] = useState([]);
+
+  // useEffect(() => {
+  //   try {
+  //     axios.get(baseUrl + "/category/").then((res) => {
+  //       setcategoryData(res.data);
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
+
+  // console.log(categoryData);
+
+  const [courseData, setcourseData] = useState([]);
+
+  useEffect(() => {
+    try {
+      axios.get(baseUrl + "/category-courses/" + categoryId).then((res) => {
+        setcourseData(res.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [categoryId]);
+
+  console.log(courseData);
+
+  // const Data = [
+  //     // Your course data here
+  //     {
+  //         id: 1,
+  //         img: "https://source.unsplash.com/1800x900/?course&1",
+  //         Title: "",
+  //         desc: "",
+  //         btn: "know More &rarr;",
+  //     },
+
+  // ];
+
+  return (
+    <div className="d-flex">
+      {courseData.map((course, index) => (
+        <CategoryCourseCard
+          key={course.id}
+          id={course.id}
+          img="https://source.unsplash.com/1800x900/?course&1"
+          title={course.courseName}
+          desc={course.description}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default CoursesCategory;

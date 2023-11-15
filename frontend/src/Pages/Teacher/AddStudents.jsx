@@ -1,6 +1,6 @@
 // import React, { useState } from "react";
 // import { Multiselect } from "multiselect-react-dropdown";
- 
+
 // function AddStudents() {
 //   const data = [
 //     { studentName: "Palak", studentID: 1 },
@@ -10,7 +10,7 @@
 //     { studentName: "Manas", studentID: 5 },
 //   ];
 //   const [options] = useState(data);
- 
+
 //   return (
 //     <div class="formcontainer">
 //       <div>
@@ -21,12 +21,12 @@
 //   );
 // }
 // export default AddStudents;
- 
+
 // ---------------------------------------------------------------------
- 
+
 import React, { useState } from "react";
 import { Multiselect } from "multiselect-react-dropdown";
- 
+
 function AddStudents() {
   const data = [
     { studentName: "Palak", studentID: 1 },
@@ -37,7 +37,7 @@ function AddStudents() {
   ];
   const [options] = useState(data);
   const [selectedStudents, setSelectedStudents] = useState([]);
- 
+
   const handleAddStudents = () => {
     // Send a POST request to your backend API here, passing the selectedStudents data.
     // You should replace the URL with your actual backend endpoint and provide the necessary data structure.
@@ -59,21 +59,29 @@ function AddStudents() {
         // Handle errors appropriately.
       });
   };
- 
+
   return (
-    <div className="formcontainer">
+    <div className="container">
       <div>
-        <h1>Select Students</h1>
-        <Multiselect
-          options={options}
-          displayValue="studentName"
-          onSelect={(selectedList) => setSelectedStudents(selectedList)}
-          onRemove={(selectedList) => setSelectedStudents(selectedList)}
-        />
-        <button onClick={handleAddStudents}>Add Students</button>
+        <div className="AddStudentHeading">
+          <h1>Select Students</h1>
+        </div>
+        <div className="AddStudentsContainer">
+          <Multiselect
+            options={options}
+            displayValue="studentName"
+            onSelect={(selectedList) => setSelectedStudents(selectedList)}
+            onRemove={(selectedList) => setSelectedStudents(selectedList)}
+            className="bg-white"
+          />
+        </div>
+
+        <div className="addStudentBtn">
+          <button onClick={handleAddStudents}>Add Students</button>
+        </div>
       </div>
     </div>
   );
 }
- 
+
 export default AddStudents;

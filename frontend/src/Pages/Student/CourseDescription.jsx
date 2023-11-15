@@ -1,10 +1,73 @@
-import React, { useState } from "react";
+//PAGE TO LOAD THE DESCRIPTION OF EACH COURSES
+
+import React, { useState, useEffect } from "react";
+//import {Link} from 'react-router-dom';
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
+const baseUrl = "http://127.0.0.1:8000/api";
+
 function CourseDescription(props) {
-  const [buttonText, setButtonText] = useState("View Content");
+  const [buttonText /*setButtonText*/] = useState("View Content");
   const handleButtonClick = () => {
     // Define the functionality for the button here
     // For example, you can update state, make an API call, etc.
   };
+
+  let { id } = useParams();
+  console.log({ id });
+
+  //const [teacherData,setteacherData]=useState([]);
+  const [courseData, setcourseData] = useState([]);
+  // let {course_id}=useParams();
+
+  useEffect(() => {
+    try {
+      axios.get(baseUrl + "/detail/" + id).then((res) => {
+        setcourseData(res.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [id]);
+
+  console.log(courseData);
+
+  const [inData, setinData] = useState([]);
+  // let {course_id}=useParams();
+
+  useEffect(() => {
+    try {
+      axios.get(baseUrl + "/instructor/").then((res) => {
+        setinData(res.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  console.log(inData);
+
+  const getInstructorName = (instructorId) => {
+    // Assuming you have access to a list of instructors
+    const fk_intructor = inData.find(
+      (intructor) => intructor.id === instructorId
+    );
+
+    return fk_intructor
+      ? `${fk_intructor.firstName} ${fk_intructor.lastName}`
+      : "Unknown Instructor";
+  };
+  // const enrollCourse = () =>{
+  //  // const studentId = localStorage.getItem('id')
+  //     axios.get(baseUrl+'/course/'+id) // Assuming there's an endpoint to get courses
+  //       .then((response) => {
+  //         setcourseData(response.data); // Assuming the data is an array of courses
+  //       })
+  //       .catch(error => {
+  //         console.error(error);
+  //       });
+  // }
 
   return (
     <div className="container mt-4 courseDes-Container">
@@ -15,32 +78,34 @@ function CourseDescription(props) {
         </div>
         {/* course title & description */}
         <div className="col-8 courseDes-text">
-          <h3>{props.title}</h3>
-          <p style={{ width: "80%" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p className="fw-bold">
-            Created By :
-            <a
-              href="/Student/TeacherProfile"
-              className="text-decoration-none text-dark"
-            >
-              TeacherName
-            </a>
-          </p>
-          <p className="fw-bold">Start Date : date</p>
-          <p className="fw-bold">End Date : date</p>
+          {courseData.map((course) => (
+            <div key={course.id}>
+              <h3>{course.courseName}</h3>
+              <p style={{ width: "80%" }}>{course.description}</p>
+
+              <p className="fw-bold">
+                Created By :
+                <a
+                  href="/Student/TeacherProfile"
+                  className="text-decoration-none text-dark"
+                >
+                  {getInstructorName(course.fk_intructor)}
+                </a>
+              </p>
+
+              <p className="fw-bold">Start Date : {course.startDate}</p>
+              <p className="fw-bold">End Date : {course.endDate}</p>
+            </div>
+          ))}
+
           {/* <p className="fw-bold"><a href="/AllStudents" className="text-decoration-none text-dark">Total Students : 100</a></p> */}
           <p className="fw-bold">
             <a href="/Student/Quiz" className="text-decoration-none text-dark">
               Quiz
             </a>
+          </p>
+          <p>
+            {/* <Link to="/" onClick={enrollCourse} className="bttn" >Enroll in this course</Link> */}
           </p>
 
           <button
@@ -57,6 +122,7 @@ function CourseDescription(props) {
               href="https://pursuitsoftwarebiz-my.sharepoint.com/:f:/g/personal/shresth_a_pursuitsoftware_biz/EhYExL_Qx19MgvSKctzf1q0B30lsfaJEuGzzxvotc2U14w?e=MX4JKy"
               className="text-decoration-none text-white"
               target="_blank"
+              rel="noreferrer"
             >
               {buttonText}
             </a>

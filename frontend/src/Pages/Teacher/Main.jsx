@@ -16,9 +16,10 @@ import Quizes from "./Quizes";
 import NewQuiz from "./NewQuiz";
 import AddVideo from "./AddVideo";
 import AddTopic from "./AddTopic";
-import AddStudents from './AddStudents';
+import AddStudents from "./AddStudents";
+import ResetPassword from "./ResetPassword";
 import Footer from "./Footer";
- 
+
 function Main() {
   return (
     <div className="App">
@@ -38,11 +39,12 @@ function Main() {
         <Route path="/NewQuiz" element={<NewQuiz />} />
         <Route path="/AddVideo" element={<AddVideo />} />
         <Route path="/AddStudents" element={<AddStudents />} />
+        <Route path="/ResetPassword" element={<ResetPassword />} />
         <Route path="/AddTopic" element={<AddTopic />} />
       </Switch>
       <Footer />
     </div>
   );
 }
- 
+
 export default Main;
